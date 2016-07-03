@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.training.com/beans/"
+	   xmlns:action="http://www.training.com/action/">
+
+	<bean id="student1" class="com.training.introspection.User">
+		<property name="id" value="1" />
+		<property name="name" value="Sandy" />
+		<property name="age" value="15" />
+	</bean>
+	<bean id="student2" class="com.training.introspection.User">
+		<property name="id" value="2" />
+		<property name="name" value="Mandy" />
+		<property name="age" value="15" />
+	</bean>
+	<action:print />
+	<action:delete id="student1" />
+	 
+</beans>

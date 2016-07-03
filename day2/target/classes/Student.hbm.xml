@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.training.vo">
+
+    <class name="Student" table="student">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="name" />
+        <property name="age" />
+        <property name="score" />
+        <bag name="students" table="stu_tea">
+        	<key column="stu_id" />
+        	<!--  <list-index column="id" base="2"/>-->
+        	<many-to-many column="tea_id" class="Teacher" />
+        </bag>
+    </class>
+
+</hibernate-mapping>

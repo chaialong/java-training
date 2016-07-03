@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<aop:aspectj-autoproxy />
+	<tx:annotation-driven transaction-manager="txManager"/>
+	<bean id="dbcp2" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/java" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+	<bean id="c3p0" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/java" />
+		<property name="user" value="root" />
+		<property name="password" value="root" />
+	</bean>
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="c3p0" />
+	</bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="c3p0" />
+	</bean>
+	<bean id="loanDao1" class="com.training.day3.spring.dao.impl.DefaultLoanDao">
+		<property name="dataSource" ref="c3p0" /> 
+	</bean>
+	<bean id="pDao" class="org.springframework.jdbc.core.support.JdbcDaoSupport" abstract="true">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	<bean id="loanDao2" class="com.training.day3.spring.dao.impl.SpringJDBCLoanDao" parent="pDao" />
+	<!-- <bean id="dataSource" class="com.training.day3.spring.aop.ThreadDataSource">
+		<property name="dataSource" ref="dbcp2" />
+	</bean> -->
+	<!-- <bean id="jndi" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/ds" />
+	</bean> -->
+	<!-- <bean id="hello" class="com.training.day3.spring.HelloBean" scope="prototype">
+		<constructor-arg><value>hello</value></constructor-arg>
+		<property name="books">
+			<list>
+				<value>Thinking in Java</value>
+				<value>Design Pattern</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="aspect" class="com.training.day3.spring.aop.MyAspect">
+	</bean>
+	
+	<bean id="my" class="com.training.day3.spring.MyFactoryBean">
+	</bean>
+	
+	<bean id="tx" class="com.training.day3.spring.aop.TxAdvice">
+		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+	
+</beans>
+
+
+
+
+
