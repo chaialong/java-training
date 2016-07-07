@@ -14,6 +14,9 @@
 <tr>
 	<td>${loan.id}</td>
 	<td>${loan.bankName }</td>
+	<td>${loan.year }</td>
+	<td>${loan.amount }</td>
+	<td>${loan.notes }</td>
 </tr>
 </c:forEach>
 </table>

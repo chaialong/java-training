@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="ssh" />
+        <module name="OCA" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ssh" target="1.5" />
+      <module name="OCA" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
