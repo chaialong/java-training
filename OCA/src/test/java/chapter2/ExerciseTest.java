@@ -74,5 +74,10 @@ public class ExerciseTest {
         }
 
         System.out.println(str);
+
+        String str2 = "Hello world";
+        for (int i = 0; i < str2.length(); i++) {
+            System.out.println(str2.charAt(i));
+        }
     }
 }
